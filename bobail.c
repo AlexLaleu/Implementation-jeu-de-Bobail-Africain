@@ -55,8 +55,9 @@ int main() {
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A' + 1;
                 int row_index = row-1;
-
-                if(is_legal(board,-1,column_index,row_index)==false){
+                int row_pos = get_row_pos(board, piece, BOARD_SIZE);
+                int column_pos = get_column_pos(board, piece, BOARD_SIZE);
+                if(is_legal(board,-1,row_pos, column_pos, column_index,row_index)==false){
                     printf("erreur, coup non légal\n");
                     break;
                 }
@@ -78,7 +79,9 @@ int main() {
                 printf("erreur, veuillez entrer une coordonnée valide !\n");
                 break;
             }
-            if(is_legal(board,piece,column_index,row_index) == false){
+            int row_pos = get_row_pos(board, piece, BOARD_SIZE);
+            int column_pos = get_column_pos(board, piece, BOARD_SIZE);
+            if(is_legal(board,piece,row_pos,column_pos,column_index,row_index) == false){
                 printf("erreur, coup non légal\n");
                 break;
             }
@@ -92,7 +95,9 @@ int main() {
                 //il joue le bobail (il le joue dans tous les cas car c'est le joueur humain qui commence au tout début)
                 int random_row = rand()%BOARD_SIZE;
                 int random_column = rand()%BOARD_SIZE;
-                while(!is_legal(board,-1,random_column,random_row)){
+                int row_pos = get_row_pos(board, -1, BOARD_SIZE);
+                int column_pos = get_column_pos(board, -1, BOARD_SIZE);
+                while(!is_legal(board,-1,row_pos,column_pos,random_column,random_row)){
                     random_column = rand()%BOARD_SIZE;
                     random_row = rand()%BOARD_SIZE;
                 }
@@ -100,7 +105,9 @@ int main() {
                 
                 // il joue sa  pièce :
                 int random_piece = rand()%5 + 6;
-                while(!is_legal(board,-1,random_column,random_row)){
+                int row_pos = get_row_pos(board, random_piece, BOARD_SIZE);
+                int column_pos = get_column_pos(board, random_piece, BOARD_SIZE);
+                while(!is_legal(board,-1,row_pos,column_pos,random_column,random_row)){
                     random_column = rand()%BOARD_SIZE;
                     random_row = rand()%BOARD_SIZE;
                 }
