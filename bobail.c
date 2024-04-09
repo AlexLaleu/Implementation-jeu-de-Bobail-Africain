@@ -1,32 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define BOARD_SIZE 5
+#include "test_end.h"
+#include "destroy_board.h"
+#include "get.h"
+#include "is_legal.h"
 
-void destroy(int **matrice, int lignes) {
-    for (int i = 0; i < lignes; i++) {
-        free(matrice[i]);
-    }
-    free(matrice);
-}
+#define BOARD_SIZE 5 
+// pour la prochaine fois :  print le tableau initial pour vérifier que ca marche
 
-bool is_legal(int** board,int piece, int column_index, int row_index){
-    // doit renvoyer true si le coup est légal, false sinon. Attention faire disjonction de cas si la piece est le pion jaune ou non
-}
 
-int test_end(int** board){
-    //doit renvoyer 0 si le jeu continue, le numéro du joueur gagnant sinon
-}
 
 void modify_board(int*** board, int piece, int column_index, int row_index){
     // modifie board pour prendre en compte le coup joué (le coup est supposé légal ici)
 }
 
-void swap(int* p_a, int* p_b){
-    int temp = *p_a;
-    *p_a = *p_b;
-    *p_b=temp;
-}
+
 
 
 
@@ -59,7 +49,7 @@ int main() {
     int current_player = 1; // le joueur humain commence
     int current_opponent = 2;
     int cmpt=0;
-    while(test_end(board) == 0){
+    while(test_end(board,BOARD_SIZE,current_player) == 0){
 
         if(current_player==1){
 
@@ -72,6 +62,7 @@ int main() {
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A' + 1;
                 int row_index = row-1;
+
                 if(is_legal(board,-1,column_index,row_index)==false){
                     printf("erreur, coup non légal\n");
                     break;
@@ -98,12 +89,30 @@ int main() {
                 printf("erreur, coup non légal\n");
                 break;
             }
-            modify_board(&board,column_index,row_index);
+            modify_board(&board,piece,column_index,row_index);
             swap(&current_opponent,&current_player);
             }
 
-            if(current_player==2){
-                // "l'intelligence artificielle" sur-entraînée joue ici
+            if(current_player==2){ // "l'intelligence artificielle" sur-entraînée joue ici
+                srand(time(NULL));
+
+                //il joue le bobail (il le joue dans tous les cas car c'est le joueur humain qui commence au tout début)
+                int random_row = rand()%BOARD_SIZE;
+                int random_column = rand()%BOARD_SIZE;
+                while(!is_legal(board,-1,random_column,random_row)){
+                    random_column = rand()%BOARD_SIZE;
+                    random_row = rand()%BOARD_SIZE;
+                }
+                modify_board(&board,-1,random_column,random_row);
+                
+                // il joue sa  pièce :
+                int random_piece = rand()%5 + 6;
+                while(!is_legal(board,-1,random_column,random_row)){
+                    random_column = rand()%BOARD_SIZE;
+                    random_row = rand()%BOARD_SIZE;
+                }
+                modify_board(&board,random_piece,random_column,random_row);
+                swap(&current_opponent,&current_player);
             }
     }
     int winner=test_end(board);
