@@ -5,6 +5,8 @@
 #include "test_end.h"
 #include "destroy_board.h"
 #include "get.h"
+#include "swap.h"
+#include "modify_board.h"
 #include "is_legal.h"
 
 #define BOARD_SIZE 5 
