@@ -3,15 +3,15 @@
 
 #define BOARD_SIZE 5
 
+#include "is_legal.h"
+#include "get.h"
+
 void destroy(int **matrice, int lignes) {
     for (int i = 0; i < lignes; i++) {
         free(matrice[i]);
     }
-    free(matrice);
-}
 
-bool is_legal(int** board,int piece, int column_index, int row_index){
-    // doit renvoyer true si le coup est légal, false sinon. Attention faire disjonction de cas si la piece est le pion jaune ou non
+    free(matrice);
 }
 
 int test_end(int** board){
@@ -72,7 +72,9 @@ int main() {
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A' + 1;
                 int row_index = row-1;
-                if(is_legal(board,-1,column_index,row_index)==false){
+                int row_pos = get_row_pos(board, piece, BOARD_SIZE);
+                int column_pos = get_column_pos(board, piece, BOARD_SIZE);
+                if(is_legal(board,-1,row_pos, column_pos, column_index,row_index)==false){
                     printf("erreur, coup non légal\n");
                     break;
                 }
@@ -94,11 +96,13 @@ int main() {
                 printf("erreur, veuillez entrer une coordonnée valide !\n");
                 break;
             }
-            if(is_legal(board,piece,column_index,row_index) == false){
+            int row_pos = get_row_pos(board, piece, BOARD_SIZE);
+            int column_pos = get_column_pos(board, piece, BOARD_SIZE);
+            if(is_legal(board,piece,row_pos,column_pos,column_index,row_index) == false){
                 printf("erreur, coup non légal\n");
                 break;
             }
-            modify_board(&board,column_index,row_index);
+            modify_board(&board,piece,column_index,row_index);
             swap(&current_opponent,&current_player);
             }
 
