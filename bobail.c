@@ -8,6 +8,7 @@
 #include "swap.h"
 #include "modify_board.h"
 #include "is_legal.h"
+#include "print_board.h"
 
 #define BOARD_SIZE 5 
 // pour la prochaine fois :  print le tableau initial pour vérifier que ca marche
@@ -20,27 +21,36 @@
 // l'utilisateur va jouer les pions verts, la machine les pions rouges
 
 int main() {
-    int** board=(int**)malloc(sizeof(int*)*BOARD_SIZE);
-    if(board==NULL){
-        printf("error\n");
+
+    int** board = (int**)malloc(sizeof(int*) * BOARD_SIZE);
+    if (board == NULL) {
+        printf("Erreur lors de l'allocation mémoire\n");
+        return 1;
     }
-    for(int i=0;i<BOARD_SIZE;i++){
-        for(int j=0;j<BOARD_SIZE;j++){
-            if(i==0){
-                board[i][j] = j+1;
-            }
-            if(i==4){
-                board[i][j] = j+6;
-            }
-            if((i==2)&&(j==2)){
+
+    // Allocation de mémoire pour chaque ligne de la matrice
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = (int*)malloc(sizeof(int) * BOARD_SIZE);
+        if (board[i] == NULL) {
+            printf("Erreur lors de l'allocation mémoire\n");
+            return 1;
+        }
+    }
+    for(int i = 0; i < BOARD_SIZE; i++) {
+        for(int j = 0; j < BOARD_SIZE; j++) {
+            if(i == 0) {
+                board[i][j] = j + 1;
+            } else if(i == 4) {
+                board[i][j] = j + 6;
+            } else if(i == 2 && j == 2) {
                 board[i][j] = -1;
-            }
-            else{
+            } else {
                 board[i][j] = 0;
             }
         }
     }
-
+    printf("plateau initial : \n");
+    print_board(board,BOARD_SIZE);
     int current_player = 1; // le joueur humain commence
     int current_opponent = 2;
     int cmpt=0;
