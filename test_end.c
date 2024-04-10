@@ -17,7 +17,5 @@ int test_end(int** board,int size,int current_player){ //doit renvoyer 0 si le j
     if(j==4){
         if( (board[i-1][j]!=0) && (board[i+1][j]!=0) && (board[i-1][j-1]!=0) && (board[i][j-1]!=0) && (board[i+1][j-1]!=0) ) {return current_player;}
     }
-    else{
-        return 0;
-    }
+    return 0;
 }
