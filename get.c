@@ -6,6 +6,7 @@ int get_column_pos(int** board, int piece, int BOARD_SIZE){
             if(x == piece) return j;
         }
     }
+    return -1; //retourne -1 si erreur
 }
 
 int get_row_pos(int** board, int piece, int BOARD_SIZE){
@@ -16,4 +17,5 @@ int get_row_pos(int** board, int piece, int BOARD_SIZE){
             if(x == piece) return i;
         }
     }
+    return -1; //retourne -1 si erreur
 }
