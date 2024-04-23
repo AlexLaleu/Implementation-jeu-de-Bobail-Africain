@@ -11,8 +11,9 @@
 #include "print_board.h"
 
 #define BOARD_SIZE 5 
-// pour la prochaine fois :  print le tableau initial pour vérifier que ca marche
-
+// pour la prochaine fois : 
+//modifier tout le main car on a changé les arguments de is_legal et modify_board
+//modifier car c'est plus is_legal mais is_legal_bis
 
 
 

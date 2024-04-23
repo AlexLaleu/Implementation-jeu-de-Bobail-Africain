@@ -3,6 +3,6 @@
 
 #include "get.h" 
 
-void modify_board(int*** board, int piece, int column_index, int row_index, int size);
+void modify_board(int*** board, int piece, int row_index, int column_index, int size);
 
 #endif
