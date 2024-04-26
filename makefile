@@ -22,17 +22,20 @@ swap.o: swap.c
 modify_board.o: modify_board.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
-is_legal.o: il_legal.c 
+is_legal.o: is_legal_bis.c 
+	$(CC) $(CFLAGS) -c $< -o $@
+
+is_path_empty.o: is_path_empty.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bobail.o: bobail.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bobail.x: print_board.o test_end.o get.o destroy_board.o swap.o modify_board.o is_legal.o bobail.o
+bobail.x: print_board.o test_end.o get.o destroy_board.o swap.o modify_board.o is_legal_bis.o is_path_empty.o bobail.o
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 clean:
-    rm -f *.o bobail.x 
+	rm -f *.o bobail.x 
 
 rebuild: clean all
 

@@ -4,7 +4,7 @@
 
 #include "get.h"
 #include "is_path_empty.h"
-// fonction si celle de matéo marche pas, il manque la fonction is_path_empty qui teste si toutes les cases par lesquelles passe le pion sont vides
+
 
 bool is_legal_bis(int **board,int piece, int row, int column, int size){
     int current_row=get_row_pos(board,piece,size);
@@ -21,7 +21,7 @@ bool is_legal_bis(int **board,int piece, int row, int column, int size){
 //déplacement d'un pion
     if(piece!=-1){
     
-    // déplacement en diagonal
+    // déplacement en diagonale
         if( ( abs(current_row-row)== abs(current_column-column) ) && (row<5) && (row<5) ){ 
             if((column==0) || (column==4) || (row==0) || (row==4)){
                 return true;
@@ -50,6 +50,8 @@ bool is_legal_bis(int **board,int piece, int row, int column, int size){
         
     // deplacement sur une colonne
         if(current_column==column){
+            printf("%d %d", current_column,column);
+            printf("%d %d", current_row,row);
             if((row==0)||(row==4)){
                 return true;
             }

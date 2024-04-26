@@ -7,19 +7,74 @@ bool is_path_empty(int** board, int current_row, int current_column, int row, in
     if (current_row != row && current_column != column && abs(current_row - row) != abs(current_column - column))
         return false;
 
-    // Déterminer le sens du déplacement
-    int delta_row = (row > current_row) ? 1 : ((row < current_row) ? -1 : 0);
-    int delta_column = (column > current_column) ? 1 : ((column < current_column) ? -1 : 0);
-
-    // Vérifier chaque case le long du chemin
-    int r = current_row + delta_row;
-    int c = current_column + delta_column;
-    while (r != row || c != column) {
-        if (board[r][c] != 0)
-            return false;
-        r += delta_row;
-        c += delta_column;
+    // déplacement en diagonale
+    if( abs(current_row-row) == abs(current_column-column) ){
+        if((current_row<row)&&(current_column<column)){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row+i][current_column+i]!=0){
+                    return false;
+                }
+            }
+        }
+        if((current_row<row)&&(current_column>column)){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row+i][current_column-i]!=0){
+                    return false;
+                }
+            }
+        }
+        if((current_row>row)&&(current_column>column)){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row-i][current_column+i]!=0){
+                    return false;
+                }
+            }
+        }
+        if((current_row>row)&&(current_column<column)){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row-i][current_column-i]!=0){
+                    return false;
+                }
+            }
+        }
     }
+
+    //déplacement en colonne
+    if(current_column==column){
+        if(current_row<row){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row+i][current_column]!=0){
+                    return false;
+                }
+            }
+        }
+        if(current_row>row){
+            for(int i=1;i<=abs(current_row-row);i++){
+                if(board[current_row-i][current_column]!=0){
+                    return false;
+                }
+            }
+        }
+    }
+
+    //déplacement sur une ligne
+    if(current_row==row){
+        if(current_column<column){
+            for(int i=1;i<=abs(current_column-column);i++){
+                if(board[current_row][current_column+i]!=0){
+                    return false;
+                }
+            }
+        }
+        if(current_row>row){
+            for(int i=1;i<=abs(current_column-column);i++){
+                if(board[current_row][current_column-i]!=0){
+                    return false;
+                }
+            }
+        }
+    }
+
 
     // Vérifier si la case finale est vide
     return (board[row][column] == 0);

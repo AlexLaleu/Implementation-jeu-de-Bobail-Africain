@@ -3,9 +3,15 @@
 #include <stdbool.h>
 
 
-void print_board(int** board,int BOARD_SIZE) {
+void print_board(int** board, int BOARD_SIZE) {
     printf("Plateau de jeu :\n");
+    printf("  ");
+    for (int col = 0; col < BOARD_SIZE; col++) {
+        printf("%c ", 'A' + col); // Affichage des lettres pour les colonnes
+    }
+    printf("\n");
     for (int i = 0; i < BOARD_SIZE; i++) {
+        printf("%d ", i + 1); // Numérotation des lignes
         for (int j = 0; j < BOARD_SIZE; j++) {
             if (board[i][j] == 0) {
                 printf("  "); // Case vide
@@ -17,6 +23,6 @@ void print_board(int** board,int BOARD_SIZE) {
                 printf("B "); // B
             }
         }
-        printf("\n\n");
+        printf("\n");
     }
 }
