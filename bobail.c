@@ -114,7 +114,7 @@ int main() {
             }
 
 
-            if(current_player==2){ // "l'intelligence artificielle" sur-entraînée joue ici
+            if(current_player==2){ 
                 srand(time(NULL));
 
                 //il joue le bobail (il le joue dans tous les cas car c'est le joueur humain qui commence au tout début)
