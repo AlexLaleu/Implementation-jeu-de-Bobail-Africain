@@ -39,14 +39,14 @@ int main() {
     }
     printf("plateau initial : \n");
     print_board(board,BOARD_SIZE);
-    /*board[0][0]=1;
-    board[1][0]=-1;
-    board[1][1]=6;
-    board[2][1]=7;
-    board[2][0]=8;
-    board[4][0]=0;
-    board[4][1]=0;
-    board[4][2]=0;*/
+    if(is_legal_bis(board,2,3,1,BOARD_SIZE)){ //légal
+        modify_board(&board,2,3,1,BOARD_SIZE);
+        print_board(board,BOARD_SIZE);
+    }
+    if(is_legal_bis(board,8,2,0,BOARD_SIZE)){ //illégal
+        modify_board(&board,8,2,0,BOARD_SIZE);
+        print_board(board,BOARD_SIZE);
+    }
     if(is_legal_bis(board,-1,2,3,BOARD_SIZE)){ //légal
         modify_board(&board,-1,2,3,BOARD_SIZE);
         print_board(board,BOARD_SIZE);

@@ -50,8 +50,6 @@ bool is_legal_bis(int **board,int piece, int row, int column, int size){
         
     // deplacement sur une colonne
         if(current_column==column){
-            printf("%d %d", current_column,column);
-            printf("%d %d", current_row,row);
             if((row==0)||(row==4)){
                 return true;
             }

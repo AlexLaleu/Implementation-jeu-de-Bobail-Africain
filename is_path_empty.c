@@ -25,14 +25,14 @@ bool is_path_empty(int** board, int current_row, int current_column, int row, in
         }
         if((current_row>row)&&(current_column>column)){
             for(int i=1;i<=abs(current_row-row);i++){
-                if(board[current_row-i][current_column+i]!=0){
+                if(board[current_row-i][current_column-i]!=0){
                     return false;
                 }
             }
         }
         if((current_row>row)&&(current_column<column)){
             for(int i=1;i<=abs(current_row-row);i++){
-                if(board[current_row-i][current_column-i]!=0){
+                if(board[current_row-i][current_column+i]!=0){
                     return false;
                 }
             }

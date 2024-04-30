@@ -4,7 +4,7 @@
 
 
 void print_board(int** board, int BOARD_SIZE) {
-    printf("Plateau de jeu :\n");
+    printf("\nPlateau de jeu :\n");
     printf("  ");
     for (int col = 0; col < BOARD_SIZE; col++) {
         printf("%c ", 'A' + col); // Affichage des lettres pour les colonnes
@@ -25,4 +25,5 @@ void print_board(int** board, int BOARD_SIZE) {
         }
         printf("\n");
     }
+    printf("\n");
 }

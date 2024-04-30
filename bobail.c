@@ -14,8 +14,6 @@
 #include "is_path_empty.h"
 
 #define BOARD_SIZE 5 
-// pour la prochaine fois : 
-//is_legal_bis semble beuger quand c'est l'ordinateur qui joue. Peut-etre une erreur dans sa boucle
 
 
 
@@ -126,6 +124,8 @@ int main() {
                     random_column = rand()%BOARD_SIZE;
                     random_row = rand()%BOARD_SIZE;
                 }while(!is_legal_bis(board,-1,random_row,random_column,BOARD_SIZE));
+                char c = random_column + 1 + 64;
+                printf("l'ordinateur bouge le bobail en %c%d : \n\n",c,random_row+1);
                 modify_board(&board,-1,random_row,random_column,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
                 
@@ -135,12 +135,9 @@ int main() {
                     random_piece = rand()%5 + 6;
                     random_column = rand()%BOARD_SIZE;
                     random_row = rand()%BOARD_SIZE;
-                    if((is_legal_bis(board,random_piece,random_row,random_column,BOARD_SIZE)==false)){
-                        printf("l'ordinateur s'est trompé il a voulu bougé %d en (%d,%d)\n",random_piece,random_row+1,random_column+1);
-                    }
                 }while(is_legal_bis(board,random_piece,random_row,random_column,BOARD_SIZE)==false);
-
-                printf("l'ordinateur bouge %d en (%d,%d) : \n\n",random_piece,random_row+1,random_column+1);
+                c = random_column + 1 + 64;
+                printf("l'ordinateur bouge %d en %c%d : \n\n",random_piece,c,random_row+1);
                 modify_board(&board,random_piece,random_row,random_column,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
                 swap(&current_opponent,&current_player);
