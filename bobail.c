@@ -16,7 +16,6 @@
 #define BOARD_SIZE 5 
 
 
-
 // on va représenter les pions verts par les nombres de 1 à 5 sur le plateau, les pions rouges entre 6 et 10, le pion jaune (BOBAIL) par -1 et les cases vides par 0
 // j'utilise la configuration initiale du site https://boulder-nautilus-254.notion.site/Sujet-515cc36d34f54bbdbf2279ea5b0e4c0b (pions verts en haut, pions rouges en bas)
 // l'utilisateur va jouer les pions verts, la machine les pions rouges
