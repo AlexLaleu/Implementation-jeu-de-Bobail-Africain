@@ -63,18 +63,18 @@ int main() {
             int piece;
 
             if(cmpt!=0){     // celui qui entame la partie n’avance que l’un de ses pions (le mouvement du BOBAIL est sauté).
-                printf("où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
+                printf("Où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A';
                 int row_index = row-1;
 
                 do{
-                    printf("où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
+                    printf("Où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
                     scanf("%c%d",&column,&row);
                     column_index = column - 'A' ;
                     row_index = row-1;
                     if(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false){
-                        printf("erreur, coup non légal\n");
+                        printf("Erreur, coup non légal\n");
                     }
                 }while(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false);
 
@@ -86,23 +86,27 @@ int main() {
             int column_index=0;
             int row_index=0;
             do{
-                printf("quel pion voulez-vous jouer ? (entrez un chiffre entre 1 et 5 inclus)\n");
+                if (cmpt==0) printf("Bienvenue dans cette interface vous permettant de vous amuser gratuitement et librement au jeu du Bobail africain !\n\n");
+                if (cmpt==0) printf("Vous commencez la partie, et vos pions sont les verts : lequel voulez-vous jouer ? (entrez un chiffre entre 1 et 5 inclus, les pions sont numérotés de la gauche vers la droite)\n\n");
+                else printf("Quel pion voulez-vous jouer ? (entrez un chiffre entre 1 et 5 inclus)\n");
                 scanf(" %d",&piece);
                 if (piece < 1 || piece > 5){
-                    printf("erreur, veuillez entrer un chiffre entre 1 et 5 !\n");
+                    printf("Erreur, veuillez entrer un chiffre entre 1 et 5 !\n");
                 }
             }while((piece<1)||(piece>5));
             
             do{
-                printf("à quelles coordonnée voulez-vous le déplacer ? (exemple A2, respectez la majuscule) \n");
+                printf("A quelles coordonnée voulez-vous le déplacer ? (exemple A2, respectez la majuscule) \n");
                 scanf(" %c%d",&column,&row);
                 column_index = column - 'A';
                 row_index = row-1;
                 if((column_index<0)||(column_index>4)||(row_index<0)||(row_index>4)){
-                    printf("erreur, veuillez entrer une coordonnée valide !\n");
+                    printf("Erreur, veuillez entrer une coordonnée valide !\n");
                 }
                 if(is_legal_bis(board,piece,row_index,column_index,BOARD_SIZE) == false){
-                    printf("erreur, coup non légal, entrez de nouvelles coordonnées\n");
+                    int z = rand() % 2 + 1;
+                    if (z==1) printf("Erreur, coup non légal, entrez de nouvelles coordonnées.\n\n");
+                    if (z==2) printf("On va pas s'énerver, entrez de nouvelles coordonnées pour un coup légal svp.\n\n");
                 }
                 
             }while(((column_index<0)||(column_index>4)||(row_index<0)||(row_index>4)) || (is_legal_bis(board,piece,row_index,column_index,BOARD_SIZE) == false));
@@ -128,7 +132,15 @@ int main() {
                     random_row = rand()%BOARD_SIZE;
                 }while(!is_legal_bis(board,-1,random_row,random_column,BOARD_SIZE));
                 char c = random_column + 1 + 64;
-                printf("l'ordinateur bouge le bobail en %c%d : \n\n",c,random_row+1);
+                int x = rand() % 6 + 1;
+
+                if (x==1) printf("L'ordinateur déplace le bobail en %c%d : \n\n",c,random_row+1);
+                if (x==2) printf("Superbe coup de la machine qui place le bobail en %c%d ! \n\n",c,random_row+1);
+                if (x==3) printf("Coup très rapide de l'ordinateur qui bouge le bobail en %c%d : \n\n",c,random_row+1);
+                if (x==4) printf("La machine vient étonnamment déplacer le bobail en %c%d ... \n\n",c,random_row+1);
+                if (x==5) printf("Et le bobail passe maintenant en %c%d ... Quelle vivacité de la part de l'adversaire ! \n\n",c,random_row+1);
+                if (x==6) printf("L'ordinateur met le bobail en %c%d ! \n\n",c,random_row+1);
+
                 modify_board(&board,-1,random_row,random_column,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
                 
@@ -140,7 +152,17 @@ int main() {
                     random_row = rand()%BOARD_SIZE;
                 }while(is_legal_bis(board,random_piece,random_row,random_column,BOARD_SIZE)==false);
                 c = random_column + 1 + 64;
-                printf("l'ordinateur bouge %d en %c%d : \n\n",random_piece,c,random_row+1);
+                int y = rand() % 8 + 1;
+
+                if (y==1) printf("L'ordinateur bouge %d en %c%d : \n\n",random_piece,c,random_row+1);
+                if (y==2) printf("L'adversaire déplace minutieusement %d en %c%d . Il semble préparer sa stratégie... \n\n",random_piece,c,random_row+1);
+                if (y==3) printf("Coup très stratégique de la machine qui place subtilement %d en %c%d ! \n\n",random_piece,c,random_row+1);
+                if (y==4) printf("L'ordinateur déplace %d en %c%d . Quelle finesse ! \n\n",random_piece,c,random_row+1);
+                if (y==5) printf("On ne s'y attendait pas, le pion %d passe en %c%d : quel coup surprenant ! \n\n",random_piece,c,random_row+1);
+                if (y==6) printf("Saviez-vous que l'enseigne des bureaux de tabac représente une carotte ? Bref, %d bouge en %c%d : \n\n",random_piece,c,random_row+1);
+                if (y==7) printf("L'ordinateur déplace %d en %c%d ... Comme disait mon prof de prépa, que du calcul, aucun recul ! \n\n",random_piece,c,random_row+1);
+                if (y==8) printf("L'ordinateur gère bien son espace sur le plateau en installant %d en %c%d : \n\n",random_piece,c,random_row+1);
+
                 modify_board(&board,random_piece,random_row,random_column,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
                 swap(&current_opponent,&current_player);
@@ -148,10 +170,10 @@ int main() {
     }
     int winner=test_end(board,BOARD_SIZE,current_player);
     if(winner == 1){
-        printf("bravo vous avez gagné !\n");
+        printf("Bravo, vous avez gagné ! Ceci étant fait...\n\n");
     }
     else{
-        printf("dommage, la machine vous a battu.\n");
+        printf("Dommage, la machine vous a battu. Snif snif\n\n");
     }
     destroy_board(board,BOARD_SIZE);
     return 0;
