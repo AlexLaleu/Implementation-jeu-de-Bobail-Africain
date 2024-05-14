@@ -10,7 +10,7 @@ bool is_legal_bis(int **board,int piece, int row, int column, int size){
     int current_row=get_row_pos(board,piece,size);
     int current_column=get_column_pos(board,piece,size);
 
-    
+
 //test si il déplace bien la piece
     if( (current_row==row) && (current_column==column) ){
         return false;
@@ -18,6 +18,11 @@ bool is_legal_bis(int **board,int piece, int row, int column, int size){
 
 //test si le pion ne passe que par des cases vides
     if(!is_path_empty(board,current_row,current_column,row,column)){
+        return false;
+    }
+
+//test si il ne sort pas du plateau
+    if( (row<0) || (column<0) || (row>4) || (column>4) ){
         return false;
     }
 
