@@ -75,7 +75,6 @@ bool is_path_empty(int** board, int current_row, int current_column, int row, in
         }
     }
 
-
     // Vérifier si la case finale est vide
     return (board[row][column] == 0);
 }
