@@ -5,4 +5,5 @@
 
 bool is_legal_bis(int **board,int piece, int row, int column, int size);
 
+
 #endif
