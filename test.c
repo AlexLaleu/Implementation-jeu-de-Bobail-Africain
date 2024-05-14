@@ -7,6 +7,11 @@
 #include "modify_board.h"
 #include "is_legal_bis.h"
 
+
+// ce code a vocation a tester la fonction que nous avons eu le plus de mal à implémenter : is_legal_bis
+// ce code n'a aucune incidence sur l'exécution du jeu final dans le fichier bobail.c
+
+
 #define BOARD_SIZE 5 
 int main() {
 
@@ -24,6 +29,8 @@ int main() {
             return 1;
         }
     }
+
+    // création du plateau de jeu
     for(int i = 0; i < BOARD_SIZE; i++) {
         for(int j = 0; j < BOARD_SIZE; j++) {
             if(i == 0) {
@@ -37,8 +44,11 @@ int main() {
             }
         }
     }
+
     printf("plateau initial : \n");
     print_board(board,BOARD_SIZE);
+
+    //début des tests : 
     if(is_legal_bis(board,2,3,1,BOARD_SIZE)){ //légal
         modify_board(&board,2,3,1,BOARD_SIZE);
         print_board(board,BOARD_SIZE);
