@@ -34,6 +34,7 @@ bobail.o: bobail.c
 bobail.x: print_board.o test_end.o get.o destroy_board.o swap.o modify_board.o is_legal_bis.o is_path_empty.o bobail.o
 	$(CC) $^ -o $@ $(LDFLAGS)
 
+
 clean:
 	rm -f *.o bobail.x 
 
