@@ -31,5 +31,6 @@ void print_board(int** board, int BOARD_SIZE) {
         }
         printf("\n");
     }
+    
     printf("\n");
 }
