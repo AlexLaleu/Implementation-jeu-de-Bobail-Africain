@@ -63,7 +63,6 @@ int main() {
             int piece;
 
             if(cmpt!=0){     // celui qui entame la partie n’avance que l’un de ses pions (le mouvement du BOBAIL est sauté).
-                printf("où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A';
                 int row_index = row-1;
