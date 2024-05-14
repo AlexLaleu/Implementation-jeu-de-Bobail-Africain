@@ -67,13 +67,17 @@ int main() {
                 scanf("%c%d",&column,&row);
                 int column_index = column - 'A';
                 int row_index = row-1;
-                while(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false){
-                    printf("erreur, coup non légal\n");
+
+                do{
                     printf("où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n");
                     scanf("%c%d",&column,&row);
                     column_index = column - 'A' ;
                     row_index = row-1;
-                }
+                    if(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false){
+                        printf("erreur, coup non légal\n");
+                    }
+                }while(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false);
+
                 modify_board(&board,-1,row_index,column_index,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
             }
@@ -107,7 +111,7 @@ int main() {
             print_board(board,BOARD_SIZE);
             swap(&current_opponent,&current_player);
             cmpt++;
-            if(test_end(board,BOARD_SIZE,current_player) == 1){
+            if(test_end(board,BOARD_SIZE,current_player) != 0){
                 break;
             }
             }
