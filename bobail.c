@@ -63,14 +63,12 @@ int main() {
             int piece;
 
             if(cmpt!=0){     // celui qui entame la partie n’avance que l’un de ses pions (le mouvement du BOBAIL est sauté).
-                printf("Où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n\n");
-                scanf("%c%d",&column,&row);
-                int column_index = column - 'A';
-                int row_index = row-1;
-
+                
+                int column_index=-1;
+                int row_index=-1;
                 do{
                     printf("Où voulez-vous déplacer le BOBAIL ? (exemple A2, respectez la majuscule)\n\n");
-                    scanf("%c%d",&column,&row);
+                    scanf(" %c%d",&column,&row);
                     column_index = column - 'A' ;
                     row_index = row-1;
                     if(is_legal_bis(board,-1,row_index, column_index,BOARD_SIZE)==false){
@@ -80,11 +78,16 @@ int main() {
 
                 modify_board(&board,-1,row_index,column_index,BOARD_SIZE);
                 print_board(board,BOARD_SIZE);
+
+                if(test_end(board,BOARD_SIZE,current_player) != 0){
+                    break;
+                }
+
             }
 
 
-            int column_index=0;
-            int row_index=0;
+            int column_index=-1;
+            int row_index=-1;
             do{
                 if (cmpt==0) printf("Bienvenue dans cette interface vous permettant de vous amuser gratuitement et librement au jeu du Bobail africain !\n\n");
                 if (cmpt==0) printf("Vous commencez la partie, et vos pions sont les verts : lequel voulez-vous jouer ? (entrez un chiffre entre 1 et 5 inclus, les pions sont numérotés de la gauche vers la droite)\n\n");
